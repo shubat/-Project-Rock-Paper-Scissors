@@ -1,4 +1,4 @@
-const game = {rock:"scissor", paper:"rock" , scissors:"paper"}
+const game = {rock:"scissor", paper:"rock" , scissors:"paper"};
 
 const gameChoices = Object.keys(game);
 
@@ -18,19 +18,15 @@ return gameChoices[randomChoice];
 
 
 
-function getHumanChoice() {
-    let pickChoice = prompt("choose from rock, papar or scissor").toLowerCase();
-    return pickChoice;
-}
+//function getHumanChoice() {
+   // return gameChoices;
+//}
 
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
-console.log(humanChoice);
-console.log(computerChoice);
 
-function playgame() {
 
+
+function playgame(humanChoice,computerChoice ) {
 
 if (humanChoice == computerChoice){
 return 'it is a tie';}
@@ -45,7 +41,21 @@ return 'it is a tie';}
     }
 
 
+   
+    function handleButtonClick(humanChoice) {
+      const computerChoice = getComputerChoice();
+      const result = playgame(humanChoice , computerChoice);
+      
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `
+          You chose: ${humanChoice}<br>
+          Computer chose: ${computerChoice}<br>
+          Result: ${result}
+      `;
+    }
+    
 
 
-const result = playgame();
-console.log(result);
+document.getElementById('rock').addEventListener('click', () => handleButtonClick('rock'));
+document.getElementById('paper').addEventListener('click', () => handleButtonClick('paper'));
+document.getElementById('scissors').addEventListener('click', () => handleButtonClick('scissors'));
